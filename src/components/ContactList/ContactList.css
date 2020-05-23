@@ -1,0 +1,25 @@
+.contactList {
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+.scrollbarContainer {
+    flex-grow: 1;
+}
+
+.headerListContainer {
+    height: 120px;
+}
+
+h3 {
+    padding: 10px;
+    margin: 0;
+}
+
+.searchPanel {
+    padding: 10px;
+}

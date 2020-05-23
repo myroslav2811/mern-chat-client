@@ -1,0 +1,10 @@
+export const SET_IS_AUTHENTICATED = 'SET_IS_AUTHENTICATED';
+export const SET_IS_LOADING = 'SET_IS_LOADING';
+export const SET_USER = 'SET_USER';
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const PUSH_NEW_MESSAGE = 'PUSH_NEW_MESSAGE';
+export const SET_DIALOGS = 'SET_DIALOGS';
+export const SET_DIALOG = 'SET_DIALOG';
+export const SET_FILTERED = 'SET_FILTERED';
+export const SET_RECEIVER = 'SET_RECEIVER';
+export const ADD_DIALOG = 'ADD_DIALOG';

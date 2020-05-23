@@ -1,0 +1,50 @@
+.contact {
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+}
+
+.contact:hover {
+    background-color: aquamarine;
+}
+
+.contactContent {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 70px);
+}
+
+.contact p {
+    margin: 0;
+}
+
+.lastMessage {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.6;
+}
+
+.contactAvatar {
+    height: 60px;
+    width: 60px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    align-self: center;
+    text-transform: uppercase;
+}
+
+.contactDate {
+    font-size: 14px;
+    text-align: right;
+    opacity: 0.6;
+}
+
+.contactUsername {
+    font-size: 18px;
+}

@@ -1,0 +1,26 @@
+.dialog {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialogHeader {
+    height: 50px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin: 0;
+}
+
+.dialogInput {
+    border-top: 1px solid #e0e0e0;
+    padding: 10px;
+}
+
+.dialogInput form {
+    display: flex;
+}

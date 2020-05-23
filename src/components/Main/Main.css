@@ -1,0 +1,9 @@
+.container {
+    background-color: #fff;
+    height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+}

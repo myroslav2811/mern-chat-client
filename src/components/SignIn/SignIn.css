@@ -1,0 +1,35 @@
+.form-invaliddata {
+    color: red;
+    text-align: center;
+    padding: 10px;
+}
+
+.invalidDataStyle {
+    color: red;
+    text-align: center;
+    padding: 10px;
+}
+
+.formWrapper {
+    width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 100px auto;
+}
+
+.headStyle {
+    text-transform: uppercase;
+    color: #303030;
+    margin: 20px 0 40px;
+    text-align: center;
+}
+
+.linkStyle {
+    display: block;
+    text-align: center;
+}
+
+.inputStyle {
+    padding: 20px 20px 0;
+}

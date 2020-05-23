@@ -1,0 +1,22 @@
+.message {
+    max-width: 80%;
+    padding: 10px 20px;
+    margin: 10px;
+    color: #fff;
+    border-radius: 15px;
+    display: flex;
+    background-color: #3f51b5;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageDate {
+    font-size: 12px;
+    align-self: flex-end;
+    margin-left: 10px;
+}
+
+.messageText {
+    word-wrap: break-word;
+}
