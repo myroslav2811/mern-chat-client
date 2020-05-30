@@ -38,12 +38,10 @@ export const Dialog = ({ children }) => {
     const createDialog = (id) => {
         createNewDialog(id, dialog, dialogs, filtered)
             .then(([newDialog, items, filteredItems]) => {
-                if (newDialog._id !== dialog._id) {
-                    dispatch({ type: SET_DIALOGS, payload: items });
-                    dispatch({ type: SET_FILTERED, payload: filteredItems });
-                    dispatch({ type: SET_DIALOG, payload: newDialog });
-                    dispatch({ type: SET_RECEIVER, payload: newDialog.to });
-                }
+                dispatch({ type: SET_DIALOGS, payload: items });
+                dispatch({ type: SET_FILTERED, payload: filteredItems });
+                dispatch({ type: SET_DIALOG, payload: newDialog });
+                dispatch({ type: SET_RECEIVER, payload: newDialog.to }); 
             })
     }
 
