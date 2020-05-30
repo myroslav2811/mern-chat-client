@@ -10,14 +10,6 @@ export const Socket = ({ children }) => {
     const { pushNewMessage } = useContext(MessagesContext)
     const { updateDialog } = useContext(DialogContext)
 
-    // socket.on('error', err => {
-    //     console.log(err);
-    // });
-
-    // socket.on('success', data => {
-    //     console.log(data);
-    // })
-
     useEffect(() => {
         socket.on('updateDialog', updateDialog);
         socket.on('newMessage', pushNewMessage);

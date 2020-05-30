@@ -29,5 +29,5 @@ export const initialValue = {
     dialog: null,
     receiver: null,
     filtered: [],
-    isLoading: false
+    isLoading: true
 }

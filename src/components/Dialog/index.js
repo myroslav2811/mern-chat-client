@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SendRounded from '@material-ui/icons/SendRounded'
 
 import { MessageList } from '../MessageList';
 import { DialogContext } from '../../Context/Dialogs';
-import { MessagesContext } from '../../Context/Messages';
 import { AuthContext } from '../../Context/Auth';
 import { SocketContext } from '../../Context/Socket';
 import './Dialog.css'
@@ -15,11 +14,10 @@ export const Dialog = () => {
 
     const [value, setValue] = useState('');
     const { dialog, receiver } = useContext(DialogContext);
-    const { getMessages } = useContext(MessagesContext);
     const { user } = useContext(AuthContext);
     const { socket } = useContext(SocketContext)
 
-    
+
 
     const handleChange = (e) => {
         setValue(e.target.value)

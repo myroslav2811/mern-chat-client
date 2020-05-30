@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
-import axios from '../../services/axios';
-import { socket } from '../../services/socket';
+import { getAllDialogs, createNewDialog, getFilteredDialogs } from '../../services/dialogs';
 import { DialogsReducer, initialValue } from './DialogsReducer';
+import { socket } from '../../services/socket';
 import { SET_DIALOGS, SET_FILTERED, SET_DIALOG, SET_RECEIVER, SET_IS_LOADING, ADD_DIALOG } from '../types';
 
 export const DialogContext = createContext();
@@ -13,45 +13,34 @@ export const Dialog = ({ children }) => {
 
     const getDialogs = () => {
         dispatch({ type: SET_IS_LOADING, payload: true });
-        axios.get('/dialogs')
-            .then(res => {
-                dispatch({ type: SET_DIALOGS, payload: res.data });
-                dispatch({ type: SET_FILTERED, payload: res.data });
-                dispatch({ type: SET_IS_LOADING, payload: false });
+        getAllDialogs()
+            .then(dialogs => {
+                dispatch({ type: SET_DIALOGS, payload: dialogs });
+                dispatch({ type: SET_FILTERED, payload: dialogs });
             })
-            .catch(err => {
-                dispatch({ type: SET_IS_LOADING, payload: false });
-                console.log(err);
-            })
+            .then(dispatch({ type: SET_IS_LOADING, payload: false }))
+            .catch(dispatch({ type: SET_IS_LOADING, payload: false }))
     }
 
     const chooseDialog = (item) => {
+        if (dialog) {
+            socket.emit('leave', dialog._id);
+        }
         dispatch({ type: SET_DIALOG, payload: item });
         dispatch({ type: SET_RECEIVER, payload: item.to });
+        socket.emit('join', item._id);
     }
 
     const filterDialogs = (value) => {
-        const pattern = new RegExp(value, 'i');
-        const items = dialogs.filter(item => pattern.test(item.to.username))
-        dispatch({ type: SET_FILTERED, payload: items });
+        dispatch({ type: SET_FILTERED, payload: getFilteredDialogs(value, dialogs) });
     }
 
     const createDialog = (id) => {
-        axios.post('/create-dialog', { id })
-            .then(res => {
-                if (dialog)
-                    socket.emit('leave', dialog._id);
-                console.log(res.data);
-                const items = dialogs.filter(item => item._id === res.data._id);
-                if (!items[0]) {
-                    dispatch({ type: SET_DIALOGS, payload: [res.data, ...dialogs] });
-                    dispatch({ type: SET_FILTERED, payload: [res.data, ...filtered] });
-                }
-                dispatch({ type: SET_DIALOG, payload: res.data });
-                socket.emit('join', res.data._id);
-            })
-            .catch(err => {
-                console.log(err);
+        createNewDialog(id, dialog, dialogs, filtered)
+            .then(([newDialog, items, filteredItems]) => {
+                dispatch({ type: SET_DIALOGS, payload: items });
+                dispatch({ type: SET_FILTERED, payload: filteredItems });
+                dispatch({ type: SET_DIALOG, payload: newDialog });
             })
     }
 

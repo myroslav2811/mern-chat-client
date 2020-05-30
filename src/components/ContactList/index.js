@@ -23,7 +23,7 @@ export const ContactList = () => {
     useEffect(() => {
         getDialogs();
         // eslint-disable-next-line
-    }, [user])
+    }, [])
 
     useEffect(
         () => {
@@ -81,9 +81,7 @@ export const ContactList = () => {
                                     item={item}
                                     avatar={item.to.avatar} />)}
                             </div>
-                            : results
-                                ? null
-                                : <EmptyComponent text='There are no contacts' />}
+                            : <EmptyComponent text='There are no contacts' />}
                         {results
                             ? <div>
                                 <p style={{ padding: '10px', fontSize: '18px', backgroundColor: '#3f51b5', color: '#fff' }}>

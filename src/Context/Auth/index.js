@@ -8,6 +8,7 @@ export const AuthContext = React.createContext({})
 export const Auth = ({ children }) => {
 
     const [state, dispatch] = useReducer(AuthReducer, initialState);
+    const { isAuthenticated, isLoading, user } = state;
 
     useEffect(() => {
         checkAuth()
@@ -25,15 +26,13 @@ export const Auth = ({ children }) => {
         .then(dispatch({ type: SET_IS_AUTHENTICATED, payload: true }))
         .catch(error => { dispatch({ type: SET_IS_AUTHENTICATED, payload: false }) })
 
-    const logout = () => {
-        authLogout()
-        dispatch({ type: SET_IS_AUTHENTICATED, payload: false })
-    }
+    const logout = () => authLogout()
+        .then(dispatch({ type: SET_IS_AUTHENTICATED, payload: false }))
 
     const signUp = credentials => authSignUp(credentials)
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: state.isAuthenticated, isLoading: state.isLoading, user: state.user, login, logout, signUp }}>
+        <AuthContext.Provider value={{ isAuthenticated, isLoading, user, login, logout, signUp }}>
             {children}
         </AuthContext.Provider>
     )

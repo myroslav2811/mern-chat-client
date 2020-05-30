@@ -3,17 +3,14 @@ import Moment from 'react-moment';
 
 import './Contact.css';
 import { DialogContext } from '../../Context/Dialogs';
-import { SocketContext } from '../../Context/Socket';
 import { dateFormat } from '../../helper';
 
 export const Contact = ({ item, userId, username, lastMessage, updatedAt, isSearching, avatar }) => {
 
     const { createDialog, chooseDialog, dialog } = useContext(DialogContext);
-    const { socket } = useContext(SocketContext);
 
     const handleChoose = () => {
         chooseDialog(item);
-        socket.emit('join', item._id);
     }
     const handleCreate = () => {
         createDialog(userId)
