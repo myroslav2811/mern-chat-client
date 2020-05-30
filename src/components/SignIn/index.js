@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
@@ -10,7 +10,7 @@ import { Loading } from '../Loading';
 
 const SignIn = (props) => {
 
-
+    const { signInError, resetErrors } = useContext(AuthContext);
 
     const {
         values,
@@ -21,6 +21,10 @@ const SignIn = (props) => {
         handleSubmit,
     } = props;
 
+    useEffect(() => {
+        resetErrors();
+        // eslint-disable-next-line
+    }, [])
 
 
     return (
@@ -64,7 +68,7 @@ const SignIn = (props) => {
                     Sign In
                     </Button>
             </div>
-            {errors.common && <p className='invalidDataStyle'>{errors.common}</p>}
+            <p className='invalidDataStyle'>{signInError}</p>
             <div className='inputStyle'>
                 <Link to='/signup' className='linkStyle'>Or create new account</Link>
             </div>

@@ -5,13 +5,14 @@
 }
 
 .contact:hover {
-    background-color: aquamarine;
+    background-color: #fff;
 }
 
 .contactContent {
     display: flex;
     flex-direction: column;
     width: calc(100% - 70px);
+    justify-content: center;
 }
 
 .contact p {
@@ -47,4 +48,8 @@
 
 .contactUsername {
     font-size: 18px;
+}
+
+.selectedContact {
+    background-color: #fff;
 }

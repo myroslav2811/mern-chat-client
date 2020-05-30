@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
+import classNames from 'classnames';
 
 import { MessagesContext } from '../../Context/Messages';
 import { DialogContext } from '../../Context/Dialogs'
@@ -34,26 +35,30 @@ export const MessageList = () => {
         }
     }
 
+    const messageListClasses = classNames('messagesContainer', { 'emptyContainer': !messages.length });
+
     return (
-        <div className='messagesContainer'>
-            {isLoading
-                ? <Loading />
-                : <Scrollbars autoHide
-                    autoHideTimeout={1000}
-                    autoHideDuration={200}
-                    ref={scrollbar}
-                    onUpdate={handleUpdate}
-                    renderTrackHorizontal={props => <div {...props} style={{ display: 'none' }}
-                    />}>
-                    <div className='messagesContainer'>
-                        {messages.length
-                            ? messages.map(item => <Message key={item._id}
-                                text={item.text}
-                                author={item.author}
-                                createdAt={item.createdAt} />)
-                            : <EmptyComponent text='There are no messages yet' />}
-                    </div>
-                </Scrollbars>}
-        </div>
+        isLoading
+            ? <div style={{ flexGrow: '1' }}>
+                <Loading />
+            </div>
+            : <Scrollbars
+                style={{ display: 'flex' }}
+                autoHide
+                autoHideTimeout={1000}
+                autoHideDuration={200}
+                ref={scrollbar}
+                onUpdate={handleUpdate}
+                renderTrackHorizontal={props => <div {...props} style={{ display: 'none' }}
+                />}>
+                <div className={messageListClasses}>
+                    {messages.length
+                        ? messages.map(item => <Message key={item._id}
+                            text={item.text}
+                            author={item.author}
+                            createdAt={item.createdAt} />)
+                        : <EmptyComponent text='There are no messages yet' />}
+                </div>
+            </Scrollbars>
     );
 }

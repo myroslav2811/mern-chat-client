@@ -6,8 +6,11 @@ export const EmptyComponent = ({ text }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100%',
-        margin: '0 auto'
+        margin: '0 auto',
+        opacity: '0.6',
+        fontSize: '20px',
+        padding: '30px 20px',
+        textAlign: 'center'
     }
 
     return (

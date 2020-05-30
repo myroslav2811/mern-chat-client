@@ -7,7 +7,7 @@ export const checkIsAuthenticated = () =>
         .then((res) => res.data)
 
 export const authSignUp = (values) =>
-    axios.post('/signup', { ...values, avatar: avatarBackground() })
+    axios.post('/signup', { ...values, avatar: avatarBackground() });
 
 export const authLogin = (values) =>
     axios.post('/signin', values)
@@ -19,3 +19,4 @@ export const authLogin = (values) =>
 
 export const authLogout = () =>
     axios.post('/logout')
+        .then(localStorageService.clearToken())

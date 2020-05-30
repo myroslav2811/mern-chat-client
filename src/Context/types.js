@@ -8,3 +8,7 @@ export const SET_DIALOG = 'SET_DIALOG';
 export const SET_FILTERED = 'SET_FILTERED';
 export const SET_RECEIVER = 'SET_RECEIVER';
 export const ADD_DIALOG = 'ADD_DIALOG';
+export const SET_SUCCESS_SIGNUP = 'SET_SUCCESS_SIGNUP';
+export const SET_SIGNUP_ERROR = 'SET_SIGNUP_ERROR';
+export const RESET = 'RESET';
+export const SET_SIGNIN_ERROR = 'SET_SIGNING_ERROR';

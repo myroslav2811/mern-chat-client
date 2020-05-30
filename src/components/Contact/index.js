@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Moment from 'react-moment';
+import classNames from 'classnames';
 
 import './Contact.css';
 import { DialogContext } from '../../Context/Dialogs';
@@ -16,9 +17,12 @@ export const Contact = ({ item, userId, username, lastMessage, updatedAt, isSear
         createDialog(userId)
     }
 
+    const classes = classNames('contact', {
+        'selectedContact': !isSearching && dialog && dialog._id === item._id
+    })
 
     return (
-        <div className='contact' onClick={isSearching ? handleCreate : handleChoose} style={!isSearching && dialog && dialog._id === item._id ? { backgroundColor: 'gray' } : null} >
+        <div className={classes} onClick={isSearching ? handleCreate : handleChoose} >
             <div className='contactAvatar' >
                 <p className='contactAvatar' style={{ backgroundColor: avatar }}>{username[0]}</p>
             </div>

@@ -1,10 +1,10 @@
 .contactList {
-    border-right: 1px solid #e0e0e0;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     box-sizing: border-box;
+    background-color: #f1f5f8;
 }
 
 .scrollbarContainer {
@@ -12,14 +12,27 @@
 }
 
 .headerListContainer {
-    height: 120px;
+    background-color: #d6dfe6;
+    padding: 20px;
 }
 
 h3 {
-    padding: 10px;
     margin: 0;
 }
 
-.searchPanel {
+.searchPanel input{
+    background-color: #fff;
+}
+
+.listHeader {
+    background-color: #509de1;
+    color: #fff;
     padding: 10px;
+}
+
+.greeting {
+    opacity: 0.6;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
 }

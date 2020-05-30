@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
@@ -13,6 +13,8 @@ const SignUp = props => {
 
     const history = useHistory();
 
+    const { successSignUp, signUpError, resetErrors, resetSuccessSignUp } = useContext(AuthContext);
+
     const {
         values,
         touched,
@@ -20,12 +22,17 @@ const SignUp = props => {
         handleChange,
         handleBlur,
         handleSubmit,
-        status,
     } = props;
 
-    if (status) {
+    useEffect(() => {
+        resetErrors()
+        // eslint-disable-next-line
+    }, [])
+
+    if (successSignUp) {
         setTimeout(() => {
             history.push('/signin');
+            resetSuccessSignUp();
         }, 2000)
 
         return <SuccessSignUp />
@@ -88,7 +95,7 @@ const SignUp = props => {
                         Sign Up
                     </Button>
                 </div>
-                {errors.common && <p className='invalidDataStyle'>{errors.common}</p>}
+                <p className='invalidDataStyle'>{!successSignUp && signUpError}</p>
                 <div className='inputStyle'>
                     <Link to='/signin' className='linkStyle'>Or sign in</Link>
                 </div>
@@ -128,9 +135,8 @@ export const SignUpWithFormik = () => {
         return errors;
     };
 
-    const handleSubmit = (values, { setStatus }) => {
+    const handleSubmit = (values) => {
         signUp(values);
-        setStatus(true);
     }
 
     if (isAuthenticated) {

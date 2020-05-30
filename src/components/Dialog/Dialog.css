@@ -10,6 +10,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #d6dfe6;
+    font-size: 20px;
+    font-weight: 700
+}
+
+.dialogHeader p {   
+    opacity: 0.6;
 }
 
 p {
