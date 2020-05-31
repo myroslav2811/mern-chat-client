@@ -22,8 +22,10 @@ export const Auth = ({ children }) => {
         .then(err => dispatch({ type: SET_IS_LOADING, payload: false }))
 
     const login = credentials => authLogin(credentials)
-        .then((data) => dispatch({ type: SET_USER, payload: data }))
-        .then(dispatch({ type: SET_IS_AUTHENTICATED, payload: true }))
+        .then((data) => {
+            dispatch({ type: SET_USER, payload: data });
+            dispatch({ type: SET_IS_AUTHENTICATED, payload: true });
+        })
         .catch(err => {
             dispatch({ type: SET_SIGNIN_ERROR, payload: err.response.data.message });
             dispatch({ type: SET_IS_AUTHENTICATED, payload: false });
